@@ -1,0 +1,363 @@
+{
+  "project": "Retain / Churn Analysis",
+  "mode": "synthetic baseline",
+  "clock": "Analysis cutoff · 30 June 2026 UTC",
+  "metrics": [
+    {
+      "label": "Active accounts",
+      "value": 10,
+      "note": "Cancelled accounts excluded"
+    },
+    {
+      "label": "High-risk MRR",
+      "value": "€278",
+      "note": "Active accounts with score > 70; not ARR"
+    },
+    {
+      "label": "90-day churn",
+      "value": "22.2%",
+      "note": "2 churned / 9 mature accounts"
+    },
+    {
+      "label": "Outreach tasks",
+      "value": 0,
+      "note": "Planned contact, not a retention outcome"
+    }
+  ],
+  "analysis": {
+    "title": "Risk is a prompt for a conversation.",
+    "headline": "Explain the score before acting on it.",
+    "description": "A deterministic four-signal rule, not a trained prediction model. Cohorts exclude accounts with less than 90 days of follow-up. All customers and revenue are synthetic.",
+    "bars_title": "90-day churn by signup cohort",
+    "bars": [
+      {
+        "label": "2026-01",
+        "value": 33.3,
+        "display": "33.3%"
+      },
+      {
+        "label": "2026-02",
+        "value": 33.3,
+        "display": "33.3%"
+      },
+      {
+        "label": "2026-03",
+        "value": 0,
+        "display": "0%"
+      },
+      {
+        "label": "2026-06",
+        "value": 0,
+        "display": "N/A"
+      }
+    ],
+    "cohorts": [
+      {
+        "month": "2026-01",
+        "size": 3,
+        "eligible": 3,
+        "churned": 1,
+        "rate": 33.3
+      },
+      {
+        "month": "2026-02",
+        "size": 3,
+        "eligible": 3,
+        "churned": 1,
+        "rate": 33.3
+      },
+      {
+        "month": "2026-03",
+        "size": 3,
+        "eligible": 3,
+        "churned": 0,
+        "rate": 0.0
+      },
+      {
+        "month": "2026-06",
+        "size": 3,
+        "eligible": 0,
+        "churned": 0,
+        "rate": null
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "ACC-001",
+      "name": "Atelier North",
+      "tier": "Starter",
+      "mrr": 29,
+      "signup": "2026-01-05",
+      "cancelled": "2026-03-01",
+      "login_drop": 0.65,
+      "invites": 0,
+      "project": false,
+      "support_hours": 30,
+      "outreach": false,
+      "version": 1,
+      "status": "Churned",
+      "value": 100,
+      "context": "€29",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 25,
+        "No project created": 20,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-005",
+      "name": "Canal Digital",
+      "tier": "Pro",
+      "mrr": 79,
+      "signup": "2026-01-05",
+      "cancelled": null,
+      "login_drop": 0.65,
+      "invites": 1,
+      "project": false,
+      "support_hours": 30,
+      "outreach": false,
+      "version": 1,
+      "status": "High risk",
+      "value": 75,
+      "context": "€79",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 0,
+        "No project created": 20,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-009",
+      "name": "Forma Team",
+      "tier": "Business",
+      "mrr": 199,
+      "signup": "2026-01-05",
+      "cancelled": null,
+      "login_drop": 0.65,
+      "invites": 2,
+      "project": false,
+      "support_hours": 30,
+      "outreach": false,
+      "version": 1,
+      "status": "High risk",
+      "value": 75,
+      "context": "€199",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 0,
+        "No project created": 20,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-007",
+      "name": "Orbit Partners",
+      "tier": "Starter",
+      "mrr": 29,
+      "signup": "2026-03-15",
+      "cancelled": null,
+      "login_drop": 0.8,
+      "invites": 0,
+      "project": true,
+      "support_hours": 0,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 60,
+      "context": "€29",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 25,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    },
+    {
+      "id": "ACC-004",
+      "name": "Meridian Works",
+      "tier": "Starter",
+      "mrr": 29,
+      "signup": "2026-06-01",
+      "cancelled": null,
+      "login_drop": 0.1,
+      "invites": 0,
+      "project": true,
+      "support_hours": 48,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 45,
+      "context": "€29",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 25,
+        "No project created": 0,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-003",
+      "name": "Studio Flux",
+      "tier": "Business",
+      "mrr": 199,
+      "signup": "2026-03-15",
+      "cancelled": null,
+      "login_drop": 0.8,
+      "invites": 2,
+      "project": true,
+      "support_hours": 0,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 35,
+      "context": "€199",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    },
+    {
+      "id": "ACC-011",
+      "name": "Scale Studio",
+      "tier": "Pro",
+      "mrr": 79,
+      "signup": "2026-03-15",
+      "cancelled": null,
+      "login_drop": 0.8,
+      "invites": 1,
+      "project": true,
+      "support_hours": 0,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 35,
+      "context": "€79",
+      "signals": {
+        "Login decline > 50%": 35,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    },
+    {
+      "id": "ACC-010",
+      "name": "Common Ground",
+      "tier": "Starter",
+      "mrr": 29,
+      "signup": "2026-02-10",
+      "cancelled": null,
+      "login_drop": 0.2,
+      "invites": 0,
+      "project": true,
+      "support_hours": 2,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 25,
+      "context": "€29",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 25,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    },
+    {
+      "id": "ACC-008",
+      "name": "Lighthouse Co",
+      "tier": "Pro",
+      "mrr": 79,
+      "signup": "2026-06-01",
+      "cancelled": null,
+      "login_drop": 0.1,
+      "invites": 1,
+      "project": true,
+      "support_hours": 48,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 20,
+      "context": "€79",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-012",
+      "name": "Evergreen Ops",
+      "tier": "Business",
+      "mrr": 199,
+      "signup": "2026-06-01",
+      "cancelled": null,
+      "login_drop": 0.1,
+      "invites": 2,
+      "project": true,
+      "support_hours": 48,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 20,
+      "context": "€199",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 20
+      }
+    },
+    {
+      "id": "ACC-002",
+      "name": "Dockside Labs",
+      "tier": "Pro",
+      "mrr": 79,
+      "signup": "2026-02-10",
+      "cancelled": "2026-04-01",
+      "login_drop": 0.2,
+      "invites": 1,
+      "project": true,
+      "support_hours": 2,
+      "outreach": false,
+      "version": 1,
+      "status": "Churned",
+      "value": 0,
+      "context": "€79",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    },
+    {
+      "id": "ACC-006",
+      "name": "Maple Systems",
+      "tier": "Business",
+      "mrr": 199,
+      "signup": "2026-02-10",
+      "cancelled": null,
+      "login_drop": 0.2,
+      "invites": 2,
+      "project": true,
+      "support_hours": 2,
+      "outreach": false,
+      "version": 1,
+      "status": "Monitor",
+      "value": 0,
+      "context": "€199",
+      "signals": {
+        "Login decline > 50%": 0,
+        "No team invitations": 0,
+        "No project created": 0,
+        "Support unanswered > 24h": 0
+      }
+    }
+  ]
+}

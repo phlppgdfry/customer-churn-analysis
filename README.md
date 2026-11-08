@@ -1,185 +1,97 @@
-# 📉 Customer Churn Analysis — SaaS Platform
+# Retain / Churn Analysis
 
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
-![Type](https://img.shields.io/badge/Type-Data%20Analysis-blue)
-![Domain](https://img.shields.io/badge/Domain-SaaS%20%7C%20B2B-purple)
+A reproducible synthetic SaaS retention analysis with mature-cohort reporting, a transparent risk rule and persistent outreach planning.
 
-> **Problem statement:** 31% of SaaS customers cancel their subscription within 90 days. Annual revenue impact: €240,000. This analysis identifies the root causes, quantifies the impact per segment, and provides prioritized recommendations expected to reduce churn by 40%.
+[![Portfolio verification](https://github.com/phlppgdfry/customer-churn-analysis/actions/workflows/demo.yml/badge.svg)](https://github.com/phlppgdfry/customer-churn-analysis/actions/workflows/demo.yml)
 
----
+![Desktop workspace with synthetic data](docs/preview.png)
 
-## 📌 Business Context
+## Run it in one command
 
-**Company profile:** B2B SaaS platform — project management tool for SMEs (10–200 employees).  
-**Pricing model:** Monthly subscription (€29 / €79 / €199 per tier).  
-**Churn definition:** No active subscription after 90 days from signup.
+Requires Python 3.11+ with SQLite support. No pip install, account, API key or Node runtime is needed to run the application.
 
-**Why this matters:**
-
-| Impact | Value |
-|---|---|
-| Monthly churn rate | 10.3% |
-| Annual churn rate | 31% |
-| Estimated ARR at risk | €240,000 |
-| Cost to acquire 1 new customer (CAC) | €180 |
-| Cost to retain 1 existing customer | €22 |
-| Retention ROI vs acquisition | **8.2x** |
-
-Retaining an existing customer is 8x cheaper than acquiring a new one. Every 1% improvement in 30-day retention = ~€7,800 in recovered annual revenue.
-
----
-
-## 🔍 Methodology
-
-```
-1. DATA COLLECTION
-   └── Export: 12 months of subscription events (signup, upgrade, downgrade, cancel)
-   └── Source: Stripe + internal CRM + NPS exit surveys (n=412)
-
-2. SEGMENTATION
-   └── By tier (Starter / Pro / Business)
-   └── By company size (1–10 / 11–50 / 51–200 employees)
-   └── By signup channel (organic / paid / referral)
-   └── By cohort (monthly, 6 cohorts analyzed)
-
-3. ROOT CAUSE ANALYSIS
-   └── 5 Why's framework on top churn segments
-   └── Exit survey clustering (NLP on free-text, n=412)
-   └── Usage pattern analysis (feature adoption vs churn correlation)
-
-4. PRIORITIZATION
-   └── Impact × Effort matrix
-   └── Quick wins vs strategic initiatives separated
-
-5. RECOMMENDATIONS
-   └── Validated against comparable SaaS benchmarks (OpenView, ChurnZero 2024 report)
+```bash
+git clone https://github.com/phlppgdfry/customer-churn-analysis.git
+cd customer-churn-analysis
+python3 -m demo.server
 ```
 
----
+Open **http://127.0.0.1:8114**. The first start seeds `var/demo.sqlite3`; later starts preserve changes. The server binds to loopback only.
 
-## 📊 Key Findings
+Use a new database path for a fresh workspace, without overwriting existing work:
 
-### Finding 1 — Churn is front-loaded
-
-```
-Day 1–30:   ████████████████  47% of all churners
-Day 31–60:  ████████          24% of all churners
-Day 61–90:  ██████████        29% of all churners
+```bash
+python3 -m demo.server --port 8214 --db var/fresh-demo.sqlite3
 ```
 
-**Conclusion:** If a customer doesn't find value in the first 30 days, they're unlikely to stay. Onboarding is the critical window.
+## Try the complete workflow
 
-### Finding 2 — Root Cause Breakdown
+1. Review the cohort panel: nine mature accounts and two cancellations within 90 days produce 22.2% 90-day churn. June is N/A.
+2. Select Canal Digital and inspect the four risk contributions. Create an outreach task with a fictional conversation brief.
+3. Reload and verify the task persists. Risk and churn metrics remain unchanged: planned contact is not a measured retention outcome.
 
-| Root Cause | % of Churners | Segment Most Affected | Effort to Fix |
-|---|---|---|---|
-| Onboarding too complex | 44% | Starter tier, 1–10 employees | Medium |
-| Feature-expectation mismatch at signup | 28% | Pro tier, paid channel | Low |
-| Price/value imbalance | 18% | Starter tier | High |
-| Poor customer support experience | 10% | All tiers | Medium |
+Search and status filtering, record inspection, CSV export, input errors, an activity log, responsive layouts, individual SVG branding, favicons and Apple touch icons are included.
 
-### Finding 3 — Feature Adoption Predicts Retention
+## Why this project exists
 
-Customers who used **3+ core features** in their first 14 days churned at only **8%** vs **41%** for those who used 0–1 features.
+A retention team needs reproducible churn denominators and explainable account signals before deciding which customers to contact.
 
-**Core features correlated with retention:**
-1. Team invitation (sent ≥1 invite in Week 1) → 3.2x retention lift
-2. First project created within 24h → 2.1x retention lift
-3. Integration connected (Slack, Jira, etc.) → 1.8x retention lift
+The implementation completes one demonstrable product slice, with explicit business rules and verifiable state changes. This is a **local portfolio demonstration with synthetic data**, not an operating service or evidence of client outcomes.
 
----
+## Business rules
 
-## ✅ Recommendations (Prioritized)
+- Analysis cutoff = 30 June 2026 UTC. Only accounts with at least 90 elapsed days since signup enter the denominator.
+- A mature account is a 90-day churner when its cancellation date is ≤90 days after signup. A later cancellation is not a 90-day event.
+- Risk = 35 points for login drop >50%, 25 for no invitations, 20 for no project and 20 for support unanswered >24h. High risk is strictly >70.
+- High-risk MRR sums monthly subscription amounts of active accounts scoring >70. Cancelled accounts are excluded. No MRR/ARR conversion or realised savings is implied.
 
-### P1 — Simplify Onboarding (Quick Win | 30-day impact)
+## Verify and reproduce
 
-**Problem:** Current onboarding has 12 steps before reaching the core product.  
-**Solution:** Reduce to 3 steps ("Jobs to be done" framework). Guide user to first value moment within 5 minutes.
-
-**Implementation:**
-- Step 1: "What's your main goal?" (3 options — project tracking / team collaboration / client reporting)
-- Step 2: Create first project (template-guided)
-- Step 3: Invite one team member
-
-**Expected impact:** −18% churn in 30-day segment. Validated against Intercom's onboarding benchmark study (2024).
-
----
-
-### P2 — Fix Feature-Expectation Mismatch (Strategic | 60-day impact)
-
-**Problem:** 28% of churners from paid channels expected features not in their tier.  
-**Root cause:** Pricing page doesn't clearly differentiate tiers; sales/marketing overpromises.
-
-**Solution:**
-- Rewrite pricing page with "This plan is for you if..." use-case framing
-- Add persona-based signup flow (choose your role → see relevant features highlighted)
-- Implement upgrade nudge when user tries a Pro feature on Starter plan
-
-**Expected impact:** −12% churn in paid-channel segment.
-
----
-
-### P3 — Predictive Churn Scoring (Strategic | Q2 implementation)
-
-**Problem:** Churn is reactive — we only know after they cancel.  
-**Solution:** Build a simple churn risk score using these signals:
-
-| Signal | Weight |
-|---|---|
-| Login frequency drop (>50% vs Week 1) | 35% |
-| 0 team invites sent by Day 7 | 25% |
-| No project created by Day 3 | 20% |
-| Support ticket opened (unanswered >24h) | 20% |
-
-**Action:** Auto-trigger CSM outreach when score > 70. Offer 15-min onboarding call. Track conversion rate of at-risk → retained.
-
----
-
-## 📈 Expected Outcome
-
-| Timeframe | Intervention | Expected Churn Reduction |
-|---|---|---|
-| Month 1 | Onboarding simplification | −18% |
-| Month 2 | Pricing page + signup flow | −12% |
-| Month 4 | Predictive scoring + CSM | −10% |
-| **Combined** | **All three** | **~−35% to −40% total** |
-
-If 35% churn reduction achieved:  
-→ Monthly churn drops from 10.3% to ~6.7%  
-→ ARR recovered: ~€84,000  
-→ Payback on implementation (est. €18,000): **< 3 months**
-
----
-
-## 📁 Repository Structure
-
-```
-customer-churn-analysis/
-│
-├── README.md                        ← You are here
-├── StakeholderBrief.md              ← One-pager for exec presentation
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb    ← Cohort analysis + descriptive stats
-│   ├── 02_root_cause_analysis.ipynb ← 5 Why's + exit survey clustering
-│   └── 03_churn_scoring_model.ipynb ← Logistic regression churn predictor
-│
-└── recommendations/
-    ├── P1_onboarding_redesign.md
-    ├── P2_pricing_page_brief.md
-    └── P3_churn_scoring_spec.md
+```bash
+make check                 # domain, HTTP, transaction and concurrency tests + syntax checks
+make report                # deterministic baseline JSON and CSV; does not modify the database
 ```
 
----
+Node 24+ is used only for JavaScript syntax checks and browser verification. The browser suite has a pinned development dependency:
 
-## 🔗 Data Sources Used
+```bash
+npm ci
+npx playwright install chromium
+npm run test:e2e
+```
 
-- Stripe subscription events (12 months)
-- Internal CRM export (HubSpot)
-- NPS exit survey (n=412 responses)
-- Feature usage logs (Mixpanel export)
-- Industry benchmarks: OpenView SaaS Benchmarks 2024, ChurnZero Churn Index
+The six Chromium tests start an isolated Python server and temporary database, then clean it up. They cover branding/assets, filtering, 390/768/1440 px widths and the complete domain workflow. GitHub Actions also runs Python tests on 3.11 and 3.14. See [validation evidence](docs/validation.md).
 
----
+Baseline evidence is committed in [reports/baseline/snapshot.json](reports/baseline/snapshot.json) and [records.csv](reports/baseline/records.csv). These are generated from the fixtures, not a screenshot of arbitrary runtime state.
 
-*Case study by Philippe Godfroy — Business Analyst Portfolio*
+## Engineering decisions
+
+**Label the method honestly.** The scorer is a deterministic rule, not logistic regression, calibrated probability or a validated predictive model.
+
+**Handle right censoring.** Customers with insufficient follow-up are excluded rather than counted as retained; cohort N/A is different from zero churn.
+
+**Separate intervention from outcome.** An outreach task changes workflow state only. It does not lower risk, mark a customer saved, send a message or invent financial impact.
+
+The browser uses semantic HTML, native JavaScript modules and CSS. The Python application separates input contracts, domain rules, transactional persistence and HTTP transport. Records use optimistic version checks; each mutation and its audit entry commit together. Rejected actions leave both unchanged.
+
+## Scope and evidence
+
+All 12 accounts, feature signals and monetary amounts are synthetic. No Stripe, HubSpot, Mixpanel or survey data was accessed. The original −40% churn reduction, €240k impact and customer research are unverified concept assumptions, not outcomes.
+
+The June concept is retained in [original-concept.md](docs/original-concept.md), explicitly labelled as unverified history. Current functionality is defined by the source, tests and this README. The demo has no authentication or tenant boundaries; use fictional data and keep it local.
+
+## Explore the repository
+
+| Resource | Purpose |
+| --- | --- |
+| [demo/domain.py](demo/domain.py) | Fixtures, calculations and use cases |
+| [demo/store.py](demo/store.py) | SQLite transactions, optimistic versions and audit log |
+| [demo/web/feature.js](demo/web/feature.js) | Domain-specific forms and details |
+| [tests](tests) | Domain, persistence, HTTP and browser verification |
+| [Architecture](docs/architecture.md) | Boundaries, tradeoffs and data flow |
+| [API contract](docs/api.md) | Routes, payloads and errors |
+| [Case study](docs/case-study.md) | Problem, acceptance criteria and delivery scope |
+| [Runbook](docs/runbook.md) | Start, inspect, export and recover |
+| [Mobile preview](docs/mobile.png) | 390 px workspace |
+
+Built by [Philippe Godfroy](https://github.com/phlppgdfry).

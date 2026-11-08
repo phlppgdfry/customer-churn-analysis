@@ -1,0 +1,13 @@
+id,name,tier,mrr,signup,cancelled,login_drop,invites,project,support_hours,outreach,version,status,value,context,signals
+ACC-001,Atelier North,Starter,29,2026-01-05,2026-03-01,0.65,0,False,30,False,1,Churned,100,€29,"{""Login decline > 50%"": 35, ""No team invitations"": 25, ""No project created"": 20, ""Support unanswered > 24h"": 20}"
+ACC-005,Canal Digital,Pro,79,2026-01-05,,0.65,1,False,30,False,1,High risk,75,€79,"{""Login decline > 50%"": 35, ""No team invitations"": 0, ""No project created"": 20, ""Support unanswered > 24h"": 20}"
+ACC-009,Forma Team,Business,199,2026-01-05,,0.65,2,False,30,False,1,High risk,75,€199,"{""Login decline > 50%"": 35, ""No team invitations"": 0, ""No project created"": 20, ""Support unanswered > 24h"": 20}"
+ACC-007,Orbit Partners,Starter,29,2026-03-15,,0.8,0,True,0,False,1,Monitor,60,€29,"{""Login decline > 50%"": 35, ""No team invitations"": 25, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
+ACC-004,Meridian Works,Starter,29,2026-06-01,,0.1,0,True,48,False,1,Monitor,45,€29,"{""Login decline > 50%"": 0, ""No team invitations"": 25, ""No project created"": 0, ""Support unanswered > 24h"": 20}"
+ACC-003,Studio Flux,Business,199,2026-03-15,,0.8,2,True,0,False,1,Monitor,35,€199,"{""Login decline > 50%"": 35, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
+ACC-011,Scale Studio,Pro,79,2026-03-15,,0.8,1,True,0,False,1,Monitor,35,€79,"{""Login decline > 50%"": 35, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
+ACC-010,Common Ground,Starter,29,2026-02-10,,0.2,0,True,2,False,1,Monitor,25,€29,"{""Login decline > 50%"": 0, ""No team invitations"": 25, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
+ACC-008,Lighthouse Co,Pro,79,2026-06-01,,0.1,1,True,48,False,1,Monitor,20,€79,"{""Login decline > 50%"": 0, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 20}"
+ACC-012,Evergreen Ops,Business,199,2026-06-01,,0.1,2,True,48,False,1,Monitor,20,€199,"{""Login decline > 50%"": 0, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 20}"
+ACC-002,Dockside Labs,Pro,79,2026-02-10,2026-04-01,0.2,1,True,2,False,1,Churned,0,€79,"{""Login decline > 50%"": 0, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
+ACC-006,Maple Systems,Business,199,2026-02-10,,0.2,2,True,2,False,1,Monitor,0,€199,"{""Login decline > 50%"": 0, ""No team invitations"": 0, ""No project created"": 0, ""Support unanswered > 24h"": 0}"
