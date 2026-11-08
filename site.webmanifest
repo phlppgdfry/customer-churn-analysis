@@ -1,0 +1,16 @@
+{
+  "name": "Retain / Churn Analysis",
+  "short_name": "Retain",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#167968",
+  "background_color": "#f2f6f5",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
